@@ -160,13 +160,22 @@ contract CryptoMonopoly {
         isChance[msg.sender] = false;
     }
 
-     function payRent() public {
+    function payRent() public {
         Box memory currentSpot = grid[player[msg.sender]];
         require(coin.balanceOf(msg.sender) >= currentSpot.rent, "Not enough money");
 
         coin.burn(msg.sender, currentSpot.rent);
         coin.mint(currentSpot.owner, currentSpot.rent);
         isOwnRent[msg.sender] = false;
+    }
+
+    function upgradeBuilding(uint256 id) public {
+        Box storage currentBuilding = grid[id];
+        require(coin.balanceOf(msg.sender) >= 50 * 10 ** 18, "Not enough money");
+
+        coin.burn(msg.sender, 50 * 10 ** 18);
+        currentBuilding.level += 1;
+        currentBuilding.rent += (currentBuilding.rent * 10) / 100;
     }
 
     modifier isOwner() {
