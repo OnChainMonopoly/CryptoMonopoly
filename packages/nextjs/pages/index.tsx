@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import type { NextPage } from "next";
 import { MetaHeader } from "~~/components/MetaHeader";
 
@@ -16,18 +16,18 @@ const Home: NextPage = () => {
 
           <Image alt="Game" width={400} height={400} src="/assets/game.png" />
 
-          <p className="text-center text-lg">
-            Roll the dice, purchase properties, and earn currency
-          </p>
+          <p className="text-center text-lg">Roll the dice, purchase properties, and earn currency</p>
 
           <div className="flex justify-center mb-6">
-            <Link href="/game" passHref className=" py-2 px-16 mb-1 mt-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50">
+            <Link
+              href="/game"
+              passHref
+              className=" py-2 px-16 mb-1 mt-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+            >
               Play
             </Link>
           </div>
         </div>
-
-        
       </div>
     </>
   );

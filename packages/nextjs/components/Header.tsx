@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, SparklesIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -57,12 +57,6 @@ export const Header = () => {
           Debug Contracts
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/blockexplorer">
-          <MagnifyingGlassIcon className="h-4 w-4" />
-          Block Explorer
-        </NavLink>
-      </li>
     </>
   );
 
@@ -96,7 +90,7 @@ export const Header = () => {
             <Image src="/assets/car.png" width={45} height={45} alt="Car" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">CryptoMonopoly</span>
+            <span className="font-bold leading-tight">Crypto Monopoly</span>
             <span className="text-xs"></span>
           </div>
         </Link>
