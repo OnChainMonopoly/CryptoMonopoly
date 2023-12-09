@@ -2,7 +2,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { BOARD_COLORS, BOARD_STYLES } from "./style";
 import { useAccount } from "wagmi";
-import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
+import {
+  useScaffoldContractRead,
+  useScaffoldContractWrite,
+  useScaffoldEventHistory,
+  useScaffoldEventSubscriber,
+} from "~~/hooks/scaffold-eth";
 
 interface Log {
   player: string;
@@ -135,6 +140,14 @@ export const Board = () => {
     },
   });
 
+  const { data: events } = useScaffoldEventHistory({
+    contractName: "CryptoMonopoly",
+    eventName: "PlayEvent",
+    fromBlock: 0n,
+  });
+
+  console.log(events);
+
   return (
     <div className="mt-5">
       <div>
@@ -210,10 +223,15 @@ export const Board = () => {
                     {payRentLoading ? "Paying..." : "Pay Rent"}
                   </button>
                 )}
-                <div>
+                <div className="h-[150px] overflow-auto bg-yellow-50 mt-4 px-2">
                   {logs.map((log: Log, index: any) => (
                     <p key={index}>
                       {log.player.slice(0, 3)}...{log.player.slice(37, 42)} {log.detail} {log.num.toString()}
+                    </p>
+                  ))}
+                  {events?.map((log: any, index: any) => (
+                    <p key={index}>
+                      {log.args.player.slice(0, 3)}...{log.args.player.slice(37, 42)} {log.args.detail} {log.args.num.toString()}
                     </p>
                   ))}
                 </div>
