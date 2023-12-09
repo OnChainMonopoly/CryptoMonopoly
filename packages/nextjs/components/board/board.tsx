@@ -161,7 +161,7 @@ export const Board = () => {
               <div className="grid-action">
                 {!isPaid && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => playGame()}
                     disabled={playLoading}
                   >
@@ -170,7 +170,7 @@ export const Board = () => {
                 )}
                 {isPaid && !isJail && !isChest && !isChance && !isOwnRent && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => roll()}
                     disabled={rollLoading}
                   >
@@ -181,7 +181,7 @@ export const Board = () => {
                   gridData[you?.toString() as any]?.owner === "0x0000000000000000000000000000000000000000" &&
                   gridData[you?.toString() as any]?.typeGrid === "Building" && (
                     <button
-                      className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                      className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                       onClick={() => buyProperty()}
                     >
                       Buy Property
@@ -189,7 +189,7 @@ export const Board = () => {
                   )}
                 {isJail && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => leaveJail()}
                     disabled={leaveLoading}
                   >
@@ -198,7 +198,7 @@ export const Board = () => {
                 )}
                 {isChest && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => collectChest()}
                     disabled={collectChestLoading}
                   >
@@ -207,7 +207,7 @@ export const Board = () => {
                 )}
                 {isChance && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => playChance()}
                     disabled={playChanceLoading}
                   >
@@ -216,22 +216,24 @@ export const Board = () => {
                 )}
                 {isOwnRent && (
                   <button
-                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                    className="py-2 px-16 mb-1 mt-3 mr-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50 w-[260px] ml-2"
                     onClick={() => payRent()}
                     disabled={payRentLoading}
                   >
                     {payRentLoading ? "Paying..." : "Pay Rent"}
                   </button>
                 )}
-                <div className="h-[150px] overflow-auto bg-yellow-50 mt-4 px-2">
+                <div className="h-[150px] overflow-auto bg-yellow-50 mt-3 px-2">
                   {logs.map((log: Log, index: any) => (
                     <p key={index}>
-                      {log.player.slice(0, 3)}...{log.player.slice(37, 42)} {log.detail} {log.num.toString()}
+                      - {log.player.slice(0, 3)}...{log.player.slice(37, 42)} {log.detail} {log.num.toString()}
                     </p>
                   ))}
                   {events?.map((log: any, index: any) => (
                     <p key={index}>
-                      {log.args.player.slice(0, 3)}...{log.args.player.slice(37, 42)} {log.args.detail} {log.args.num.toString()}
+                      - {log.args.player.slice(0, 3)}...{log.args.player.slice(37, 42)} {log.args.detail}
+                      {"·"}
+                      {log.args.num.toString()}
                     </p>
                   ))}
                 </div>
@@ -247,7 +249,13 @@ export const Board = () => {
                   >
                     {item.typeGrid === "Building" && <div className={"label" + " " + BOARD_COLORS[index]}></div>}
                     {you?.toString() === item.id.toString() && (
-                      <Image className="car z-30" width={30} height={30} src="/assets/car.png" alt="Car" />
+                      <Image
+                        className="car z-30 bg-black rounded-xl p-1"
+                        width={40}
+                        height={40}
+                        src="/assets/car.png"
+                        alt="Car"
+                      />
                     )}
                     {item.typeGrid === "Home" && (
                       <Image className="home" width={45} height={45} src="/assets/go.png" alt="Home" />
